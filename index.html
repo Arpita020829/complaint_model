@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Support - Complaint Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 10L12 5L2 10L12 15L22 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 12.5V15C6 15 8.5 17 12 17C15.5 17 18 15 18 15V12.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span>Student Support</span>
+            </div>
+            <div class="user-profile">
+                <img src="https://ui-avatars.com/api/?name=User&background=6366F1&color=fff" alt="Profile">
+            </div>
+        </header>
+
+        <main id="main-content">
+            <!-- Home / Register Screen -->
+            <section id="home-screen" class="screen active">
+                <div class="screen-header">
+                    <h1>Register Complaint</h1>
+                    <p>We're here to help resolve your concerns. Your feedback ensures a better campus for everyone.</p>
+                </div>
+
+                <div class="card registration-card">
+                    <div class="step-indicator">
+                        <div class="step-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M18.5 2.50001C18.8978 2.10218 19.4374 1.87869 20 1.87869C20.5626 1.87869 21.1022 2.10218 21.5 2.50001C21.8978 2.89783 22.1213 3.43739 22.1213 4.00001C22.1213 4.56262 21.8978 5.10218 21.5 5.50001L12 15L8 16L9 12L18.5 2.50001Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="step-text">
+                            <h3>Issue Details</h3>
+                            <span>STEP 1 OF 2</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Category (Auto-predicted)</label>
+                        <div class="select-wrapper">
+                            <input type="text" id="category-input" readonly placeholder="Enter description to predict..." class="readonly-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="complaint-text" placeholder="Describe your issue (e.g., Fan not working in room 203)"></textarea>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-outline">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23 19C23 19.5304 22.7893 20.0391 22.4142 20.4142C22.0391 20.7893 21.5304 21 21 21H3C2.46957 21 1.96086 20.7893 1.58579 20.4142C1.21071 20.0391 1 19.5304 1 19V8C1 7.46957 1.21071 6.96086 1.58579 6.58579C1.96086 6.21071 2.46957 6 3 6H7L9 3H15L17 6H21C21.5304 6 22.0391 6.21071 22.4142 6.58579C22.7893 6.96086 23 7.46957 23 8V19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        Attach Photo
+                    </button>
+                    <button class="btn-outline">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        Auto-tag Room
+                    </button>
+                </div>
+
+                <button id="submit-btn" class="btn-primary">
+                    Submit Complaint
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 5L19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+
+                <p class="disclaimer">By submitting, you agree to the University Complaint Resolution Guidelines and Privacy Policy.</p>
+
+                <div class="recent-tracking">
+                    <div class="section-header">
+                        <h2>Recent Tracking</h2>
+                        <a href="#" id="view-all-link">View All</a>
+                    </div>
+                    <div id="recent-list">
+                        <!-- Items injected by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Success Screen -->
+            <section id="success-screen" class="screen">
+                <div class="success-header">
+                    <div class="success-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 6L9 17L4 12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Complaint Submitted</h1>
+                    <p>Your report has been successfully logged and assigned to the maintenance team.</p>
+                </div>
+
+                <div class="card result-card">
+                    <div class="ticket-header">
+                        <span id="res-id">TICKET ID: #CMS-9842</span>
+                        <div class="badge badge-high" id="res-urgency">HIGH URGENCY</div>
+                    </div>
+                    <h2 id="res-text">Faulty Wiring Issue</h2>
+                    
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <div class="detail-icon">🏢</div>
+                            <div class="detail-content">
+                                <label>Category</label>
+                                <span id="res-category">Electrical</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">🏢</div>
+                            <div class="detail-content">
+                                <label>Floor</label>
+                                <span id="res-floor">2nd Floor</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">📍</div>
+                            <div class="detail-content">
+                                <label>Room Number</label>
+                                <span id="res-room">203</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">🗓️</div>
+                            <div class="detail-content">
+                                <label>Reported On</label>
+                                <span id="res-date">Oct 24, 2023</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="view-details">
+                        <div class="avatars">
+                            <img src="https://ui-avatars.com/api/?name=T1&background=random" alt="Avatar">
+                            <div class="avatar-plus">+1</div>
+                        </div>
+                        <a href="#">View Details <span>&rarr;</span></a>
+                    </div>
+                </div>
+
+                <div class="processing-status">
+                    <h3>Processing Status</h3>
+                    <div class="stepper">
+                        <div class="step completed">
+                            <div class="step-inner">✓</div>
+                            <div class="step-info">
+                                <strong>Complaint Logged</strong>
+                                <span>10:45 AM, Today</span>
+                            </div>
+                        </div>
+                        <div class="step current">
+                            <div class="step-inner">👁️</div>
+                            <div class="step-info">
+                                <strong>Technician Assigned</strong>
+                                <span>11:02 AM, Today</span>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-inner"></div>
+                            <div class="step-info">
+                                <strong>Resolution Pending</strong>
+                                <span>Expected: Within 24 hours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-footer">
+                    <button class="btn-secondary" onclick="showScreen('home-screen')">Edit Details</button>
+                    <button class="btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 18px; margin-right: 8px;">
+                            <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Support
+                    </button>
+                </div>
+            </section>
+
+            <!-- History Screen -->
+            <section id="history-screen" class="screen">
+                <div class="screen-header history-header">
+                    <div class="header-with-action">
+                        <div>
+                            <span class="label">ACTIVITY</span>
+                            <h1>Complaint History</h1>
+                        </div>
+                        <button class="filter-btn">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 3H2L10 12.46V19L14 21V12.46L22 3Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <p>Tracking your requests for a better campus experience.</p>
+                </div>
+
+                <div id="history-list">
+                    <!-- History items injected by JS -->
+                </div>
+
+                <button class="fab" onclick="showScreen('home-screen')">+</button>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" onclick="showScreen('home-screen', this)">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" onclick="showScreen('history-screen', this)">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span>History</span>
+            </button>
+            <button class="nav-item">
+                <div class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 21V19C20 17.9391 19.5786 17.0217 18.8284 16.2716C18.0783 15.5214 17.1609 15.1 16 15.1H8C6.83913 15.1 5.92174 15.5214 5.17157 16.2716C4.4214 17.0217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span>Profile</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Floating Chat Button -->
+    <button class="chat-fab">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" fill="white"/>
+        </svg>
+    </button>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
